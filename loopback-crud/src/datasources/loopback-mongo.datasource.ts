@@ -1,7 +1,6 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
-console.log('USERMONGO',process.env.MONGO_INITDB_ROOT_USERNAME);
 
 const config = {
   name: 'loopback_mongo',

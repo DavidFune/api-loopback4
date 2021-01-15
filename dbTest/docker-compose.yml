@@ -1,12 +1,12 @@
 version: '3.4'
 services: 
   db-test:
+    build: .
     image: mongo:4.2
     container_name: db-test
     ports:
       - "27020:27017"
     volumes: 
+      - ./.docker/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
       - ./.docker/data/db:/data/db/
       - ./.docker/dump-bancos:/dump
-  
-      

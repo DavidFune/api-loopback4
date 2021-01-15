@@ -1,16 +1,14 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
+console.log('USERMONGO',process.env.MONGO_INITDB_ROOT_USERNAME);
+
 const config = {
   name: 'loopback_mongo',
   connector: 'mongodb',
-  url: '',
-  host: 'localhost',
-  port: 27020,
-  user: 'root',
-  password: '',
-  database: 'loopbackmongodb',
-  useNewUrlParser: true
+  url: `mongodb://localhost:27020/db-test`,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 };
 
 // Observe application's life cycle to disconnect the datasource when

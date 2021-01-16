@@ -34,6 +34,7 @@
     "rebuild": "npm run clean && npm run build",
     "prestart": "npm run rebuild",
     "start": "node -r source-map-support/register .",
+    "dev" : "nodemon server/server.js --watch common --watch server",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
   },
   "repository": {
@@ -63,11 +64,12 @@
   },
   "devDependencies": {
     "@loopback/build": "^6.2.8",
-    "source-map-support": "^0.5.19",
+    "@loopback/eslint-config": "^10.0.4",
     "@loopback/testlab": "^3.2.10",
     "@types/node": "^10.17.48",
-    "@loopback/eslint-config": "^10.0.4",
     "eslint": "^7.15.0",
+    "nodemon": "^2.0.7",
+    "source-map-support": "^0.5.19",
     "typescript": "~4.1.2"
   }
 }

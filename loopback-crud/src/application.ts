@@ -36,7 +36,6 @@ export class LoopbackCrudApplication extends BootMixin(
     this.configure(RestExplorerBindings.COMPONENT).to({
       path: '/explorer',
     });
-    this.component(RestExplorerComponent);
     this.component(AuthenticationComponent);
     this.component(JWTAuthenticationComponent);
     this.dataSource(LoopbackMongoDataSource, UserServiceBindings.DATASOURCE_NAME);    

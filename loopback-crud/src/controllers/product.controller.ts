@@ -18,6 +18,7 @@ import {
 } from '@loopback/rest';
 import {Product} from '../models';
 import {ProductRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
 export class ProductController {
   constructor(
@@ -63,6 +64,7 @@ export class ProductController {
     return this.productRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/products', {
     responses: {
       '200': {
@@ -119,7 +121,7 @@ export class ProductController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.string('_id') id: string,
     @param.filter(Product, {exclude: 'where'}) filter?: FilterExcludingWhere<Product>
   ): Promise<Product> {
     return this.productRepository.findById(id, filter);
@@ -133,7 +135,7 @@ export class ProductController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('_id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +156,7 @@ export class ProductController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('_id') id: string,
     @requestBody() product: Product,
   ): Promise<void> {
     await this.productRepository.replaceById(id, product);
@@ -167,7 +169,7 @@ export class ProductController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('_id') id: string): Promise<void> {
     await this.productRepository.deleteById(id);
   }
 }

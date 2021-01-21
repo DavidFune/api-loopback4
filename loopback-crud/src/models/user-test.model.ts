@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Order, OrderWithRelations} from './order.model';
 
 @model()
 export class UserTest extends Entity {
@@ -21,14 +22,17 @@ export class UserTest extends Entity {
   })
   password: string;
 
+  @hasMany(() => Order)
+  orders: Order[];
 
   constructor(data?: Partial<UserTest>) {
     super(data);
   }
 }
 
-export interface UsertestRelations {
+export interface UserTestRelations {
   // describe navigational properties here
+  orders?: OrderWithRelations[];
 }
 
-export type UsertestWithRelations = UserTest & UsertestRelations;
+export type UserTestWithRelations = UserTest & UserTestRelations;

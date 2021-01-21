@@ -7,8 +7,8 @@ export class Product extends Entity {
     generated: true,
     id: true
   })
-  
-  id?:string;
+
+  id?: string;
 
   @property({
     type: 'string',
@@ -25,6 +25,10 @@ export class Product extends Entity {
   })
   description?: string;
 
+  @property({
+    type: 'string',
+  })
+  orderId?: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data

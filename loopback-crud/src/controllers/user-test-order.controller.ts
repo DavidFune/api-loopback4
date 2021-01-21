@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -26,6 +27,7 @@ export class UserTestOrderController {
     @repository(UserTestRepository) protected userTestRepository: UserTestRepository,
   ) { }
 
+  @authenticate('jwt')
   @get('/user-tests/{id}/orders', {
     responses: {
       '200': {

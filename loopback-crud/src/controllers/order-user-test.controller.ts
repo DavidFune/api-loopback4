@@ -1,3 +1,4 @@
+import { UserRepository } from '@loopback/authentication-jwt';
 import {
   repository,
 } from '@loopback/repository';
@@ -10,12 +11,12 @@ import {
   Order,
   UserTest,
 } from '../models';
-import {OrderRepository} from '../repositories';
+import { UserTestRepository } from '../repositories';
 
 export class OrderUserTestController {
   constructor(
-    @repository(OrderRepository)
-    public orderRepository: OrderRepository,
+    @repository(UserTestRepository)
+    public userTestRepository: UserTestRepository,
   ) { }
 
   @get('/orders/{id}/user-test', {
@@ -31,8 +32,8 @@ export class OrderUserTestController {
     },
   })
   async getUserTest(
-    @param.path.string('id') id: typeof Order.prototype._id,
+    @param.path.string('_id') _id: typeof UserTest.prototype._id,
   ): Promise<UserTest> {
-    return this.orderRepository.userTest(id);
+    return this.userTestRepository.findById(_id);
   }
 }

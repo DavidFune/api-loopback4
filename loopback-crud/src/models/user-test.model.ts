@@ -1,8 +1,9 @@
+import { User } from '@loopback/authentication-jwt';
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Order, OrderWithRelations} from './order.model';
 
 @model()
-export class UserTest extends Entity {
+export class UserTest extends  Entity{
   @property({
     type: 'string',
     id: true,

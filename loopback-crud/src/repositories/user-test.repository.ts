@@ -3,8 +3,10 @@ import {UserTest, UserTestRelations, Order} from '../models';
 import {LoopbackMongoDataSource} from '../datasources';
 import {inject, Getter} from '@loopback/core';
 import {OrderRepository} from './order.repository';
+import { UserRepository } from '@loopback/authentication-jwt';
 
 export class UserTestRepository extends DefaultCrudRepository<
+  
   UserTest,
   typeof UserTest.prototype._id,
   UserTestRelations

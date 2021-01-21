@@ -148,7 +148,7 @@ export class UserController {
       _.omit(UserTest, 'password'),
     );
 
-    await this.userRepository.userCredentials(savedUser.id).create({password});
+    await this.userRepository.userCredentials(savedUser._id).create({password});
 
     return savedUser;
   }

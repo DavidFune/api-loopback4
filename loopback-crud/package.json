@@ -34,7 +34,7 @@
     "rebuild": "npm run clean && npm run build",
     "prestart": "npm run rebuild",
     "start": "node -r source-map-support/register .",
-    "dev" : "nodemon server/server.js --watch common --watch server",
+    "dev" : "nodemon server.js",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
   },
   "repository": {
@@ -71,5 +71,12 @@
     "nodemon": "^2.0.7",
     "source-map-support": "^0.5.19",
     "typescript": "~4.1.2"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "npm start"
   }
 }

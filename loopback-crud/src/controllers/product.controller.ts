@@ -64,7 +64,7 @@ export class ProductController {
     return this.productRepository.count(where);
   }
 
-  @authenticate('jwt')
+  //@authenticate('jwt')
   @get('/products', {
     responses: {
       '200': {
@@ -108,7 +108,7 @@ export class ProductController {
     return this.productRepository.updateAll(product, where);
   }
 
-  @get('/products/{id}', {
+  @get('/products/{_id}', {
     responses: {
       '200': {
         description: 'Product model instance',
@@ -121,13 +121,14 @@ export class ProductController {
     },
   })
   async findById(
-    @param.path.string('_id') id: string,
+    @param.path.string('_id') _id: string,
     @param.filter(Product, {exclude: 'where'}) filter?: FilterExcludingWhere<Product>
   ): Promise<Product> {
-    return this.productRepository.findById(id, filter);
+    console.log(_id);
+    return this.productRepository.findById(_id, filter);
   }
 
-  @patch('/products/{id}', {
+  @patch('/products/{_id}', {
     responses: {
       '204': {
         description: 'Product PATCH success',
@@ -135,7 +136,7 @@ export class ProductController {
     },
   })
   async updateById(
-    @param.path.string('_id') id: string,
+    @param.path.string('_id') _id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -145,10 +146,10 @@ export class ProductController {
     })
     product: Product,
   ): Promise<void> {
-    await this.productRepository.updateById(id, product);
+    await this.productRepository.updateById(_id, product);
   }
 
-  @put('/products/{id}', {
+  @put('/products/{_id}', {
     responses: {
       '204': {
         description: 'Product PUT success',
@@ -156,20 +157,20 @@ export class ProductController {
     },
   })
   async replaceById(
-    @param.path.string('_id') id: string,
+    @param.path.string('_id') _id: string,
     @requestBody() product: Product,
   ): Promise<void> {
-    await this.productRepository.replaceById(id, product);
+    await this.productRepository.replaceById(_id, product);
   }
 
-  @del('/products/{id}', {
+  @del('/products/{_id}', {
     responses: {
       '204': {
         description: 'Product DELETE success',
       },
     },
   })
-  async deleteById(@param.path.string('_id') id: string): Promise<void> {
-    await this.productRepository.deleteById(id);
+  async deleteById(@param.path.string('_id') _id: string): Promise<void> {
+    await this.productRepository.deleteById(_id);
   }
 }

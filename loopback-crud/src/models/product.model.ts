@@ -8,7 +8,7 @@ export class Product extends Entity {
     id: true
   })
   
-  _id?:string;
+  id?:string;
 
   @property({
     type: 'string',
